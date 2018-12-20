@@ -1,7 +1,7 @@
 function Snake() {
-  this.x = 0;
-  this.y = 0;
-  this.xspeed = 1;
+  this.x = floor((width / scl) / 2) * scl;
+  this.y = floor((height / scl) / 2) * scl;
+  this.xspeed = 0;
   this.yspeed = 0;
   this.total = 0;
   this.tail = [];
