@@ -55,16 +55,19 @@ function Snake() {
 
     // keep head in viewfield. notice tail still shifts forward
     // so automatic death if anything has been eaten
-    this.x = constrain(this.x, 0, width - scl);
-    this.y = constrain(this.y, 0, height - scl);
+    this.x = constrain(this.x, scl, width - scl);
+    this.y = constrain(this.y, scl, height - scl);
   }
 
   this.show = function() {
     fill(255);
-    for (var i = 0; i < this.tail.length; ++i) {
+    for (var i = 0; i < this.tail.length; ++i)
       rect(this.tail[i].x, this.tail[i].y, scl, scl);
+    if (this.Score == 0)
+      ellipse(this.x, this.y, scl, scl);
+    else {
+      triangle(this.x, this.y, this.tail[this.Score - 1].x, this.y + scl, this.tail[this.Score - 1].x, this.y - scl);
+      triangle(this.x, this.y, this.x + scl, this.tail[this.Score - 1].y, this.x - scl, this.tail[this.Score - 1].y);
     }
-    ellipse(this.x, this.y, scl, scl);
-
   }
 }
