@@ -65,9 +65,8 @@ function Snake() {
       rect(this.tail[i].x, this.tail[i].y, scl, scl);
     if (this.Score == 0)
       ellipse(this.x, this.y, scl, scl);
-    else {
-      triangle(this.x, this.y, this.tail[this.Score - 1].x, this.y + scl, this.tail[this.Score - 1].x, this.y - scl);
-      triangle(this.x, this.y, this.x + scl, this.tail[this.Score - 1].y, this.x - scl, this.tail[this.Score - 1].y);
-    }
+    else if (this.xspeed != 0) triangle(this.x, this.y, this.tail[this.Score - 1].x, this.y + scl, this.tail[this.Score - 1].x, this.y - scl);
+    else if (this.yspeed != 0) triangle(this.x, this.y, this.x + scl, this.tail[this.Score - 1].y, this.x - scl, this.tail[this.Score - 1].y);
+
   }
 }
