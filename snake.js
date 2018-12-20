@@ -16,18 +16,18 @@ function Snake() {
   this.eat = function(pos) {
     var d = dist(this.x, this.y, pos.x, pos.y);
     if (d < scl) {
-      this.Score++;
+      ++this.Score;
       return true;
     } else return false;
   }
 
   this.death = function() {
     //check if snake kills itself
-    for (var i = 0; i < this.tail.length; i++) {
+    for (var i = 0; i < this.tail.length; ++i) {
       if (this.tail[i].x == this.x && this.tail[i].y == this.y) {
         //game over message
         console.log('you loose at ');
-        console.log(Score);
+        console.log(this.Score);
         background(250);
         background(0);
         background(50);
@@ -43,26 +43,28 @@ function Snake() {
   }
 
   this.update = function() {
-    for (var i = 0; i < this.tail.length - 1; i++) {
+    // shift tail and pop neck
+    for (var i = 0; i < this.tail.length - 1; ++i)
       this.tail[i] = this.tail[i + 1];
-    }
-    if (this.Score >= 1) {
+    if (this.Score >= 1)
       this.tail[this.Score - 1] = createVector(this.x, this.y);
-    }
 
+    // move head
     this.x = this.x + this.xspeed * scl;
     this.y = this.y + this.yspeed * scl;
 
+    // keep head in viewfield. notice tail still shifts forward
+    // so automatic death if anything has been eaten
     this.x = constrain(this.x, 0, width - scl);
     this.y = constrain(this.y, 0, height - scl);
   }
 
   this.show = function() {
     fill(255);
-    for (var i = 0; i < this.tail.length; i++) {
+    for (var i = 0; i < this.tail.length; ++i) {
       rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
-    rect(this.x, this.y, scl, scl);
+    ellipse(this.x, this.y, scl, scl);
 
   }
 }
