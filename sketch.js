@@ -12,7 +12,7 @@ function setup() {
   frameRate(10);
   s = new Snake();
   food = new Food();
-  food.gen();
+  food.gen(s.x, s.y);
 
 }
 
