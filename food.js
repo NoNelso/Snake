@@ -1,9 +1,14 @@
 function Food() {
-  this.x = random(scl, floor(width / scl)) * scl;
-  this.y = random(scl, floor(height / scl)) * scl;
+
+  this.x = floor(random(1, cols)) * scl;
+  this.y = floor(random(1, rows)) * scl;
   this.gen = function() {
-    this.x = random(scl, floor(width / scl)) * scl;
-    this.y = random(scl, floor(height / scl)) * scl;
+    this.x = floor(random(1, cols)) * scl;
+    this.y = floor(random(1, rows)) * scl;
+  }
+  this.show = function() {
+    fill(255, 0, 100);
+    rect(this.x, this.y, scl, scl);
   }
 
   // this.x = random(floor(width / scl));

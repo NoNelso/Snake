@@ -1,9 +1,13 @@
 var s;
 var scl = 20;
 var food;
+var cols;
+var rows;
 
 function setup() {
   createCanvas(600, 600);
+  cols = floor(width / scl);
+  rows = floor(height / scl);
   rectMode(CENTER);
   frameRate(10);
   s = new Snake();
@@ -21,10 +25,10 @@ function draw() {
   s.death();
   s.update();
   s.show();
+  food.show();
 
 
-  fill(255, 0, 100);
-  rect(food.x, food.y, scl, scl);
+
 }
 
 function keyPressed() {
