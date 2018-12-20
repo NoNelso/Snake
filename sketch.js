@@ -1,6 +1,5 @@
 var s;
 var scl = 20;
-
 var food;
 
 function setup() {
@@ -8,26 +7,16 @@ function setup() {
   rectMode(CENTER);
   frameRate(10);
   s = new Snake();
-  pickLocation();
+  food = new Food();
+  food.gen();
 
-}
-
-function pickLocation() {
-  var cols = floor(width / scl);
-  var rows = floor(height / scl);
-  food = createVector(floor(random(cols)), floor(random(rows)));
-  food.mult(scl);
-}
-
-function mousePressed() {
-  s.total++;
 }
 
 function draw() {
   background(51);
 
   if (s.eat(food)) {
-    pickLocation();
+    food.gen();
   }
   s.death();
   s.update();
