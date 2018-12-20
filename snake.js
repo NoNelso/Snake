@@ -22,10 +22,9 @@ function Snake() {
   }
 
   this.death = function() {
+    //check if snake kills itself
     for (var i = 0; i < this.tail.length; i++) {
-      var pos = this.tail[i];
-      var d = dist(this.x, this.y, pos.x, pos.y);
-      if (d < 1) {
+      if (this.tail[i].x == this.x && this.tail[i].y == this.y) {
         //game over message
         console.log('you loose at ');
         console.log(Score);
