@@ -21,13 +21,22 @@ function Snake() {
     } else return false;
   }
 
-
   this.death = function() {
     for (var i = 0; i < this.tail.length; i++) {
       var pos = this.tail[i];
       var d = dist(this.x, this.y, pos.x, pos.y);
       if (d < 1) {
-        console.log('starting over');
+        //game over message
+        console.log('you loose at ');
+        console.log(Score);
+        background(250);
+        background(0);
+        background(50);
+        //reset game
+        this.x = floor((width / scl) / 2) * scl;
+        this.y = floor((height / scl) / 2) * scl;
+        this.xspeed = 0;
+        this.yspeed = 0;
         this.Score = 0;
         this.tail = [];
       }
