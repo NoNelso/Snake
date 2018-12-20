@@ -15,12 +15,10 @@ function Snake() {
 
   this.eat = function(pos) {
     var d = dist(this.x, this.y, pos.x, pos.y);
-    if (d < 1) {
+    if (d < scl) {
       this.Score++;
       return true;
-    } else {
-      return false;
-    }
+    } else return false;
   }
 
 
