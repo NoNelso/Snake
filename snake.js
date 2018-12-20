@@ -1,25 +1,28 @@
 function Snake() {
+  //start snake at center with no motion, tail, or score
   this.x = floor((width / scl) / 2) * scl;
   this.y = floor((height / scl) / 2) * scl;
   this.xspeed = 0;
   this.yspeed = 0;
-  this.total = 0;
+  this.Score = 0;
   this.tail = [];
+
+  this.dir = function(x, y) {
+    //take in user control input
+    this.xspeed = x;
+    this.yspeed = y;
+  }
 
   this.eat = function(pos) {
     var d = dist(this.x, this.y, pos.x, pos.y);
     if (d < 1) {
-      this.total++;
+      this.Score++;
       return true;
     } else {
       return false;
     }
   }
 
-  this.dir = function(x, y) {
-    this.xspeed = x;
-    this.yspeed = y;
-  }
 
   this.death = function() {
     for (var i = 0; i < this.tail.length; i++) {
@@ -27,7 +30,7 @@ function Snake() {
       var d = dist(this.x, this.y, pos.x, pos.y);
       if (d < 1) {
         console.log('starting over');
-        this.total = 0;
+        this.Score = 0;
         this.tail = [];
       }
     }
@@ -37,8 +40,8 @@ function Snake() {
     for (var i = 0; i < this.tail.length - 1; i++) {
       this.tail[i] = this.tail[i + 1];
     }
-    if (this.total >= 1) {
-      this.tail[this.total - 1] = createVector(this.x, this.y);
+    if (this.Score >= 1) {
+      this.tail[this.Score - 1] = createVector(this.x, this.y);
     }
 
     this.x = this.x + this.xspeed * scl;
